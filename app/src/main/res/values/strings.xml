@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Youtube</string>
+    <string name="video_name">%1$s</string>
 </resources>
