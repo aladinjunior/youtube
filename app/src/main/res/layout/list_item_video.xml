@@ -19,8 +19,8 @@
 
     <ImageView
         android:id="@+id/main_video_avatar"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/main_video_container"
         android:layout_marginTop="10dp"
@@ -35,12 +35,13 @@
         android:id="@+id/main_video_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:text="@string/video_name"
-        android:text="Senorita, Shawn Mendes, Camila Cabello"
+        tools:text="Senorita, Shawn Mendes, Camila Cabello"
         android:textSize="15sp"
         app:layout_constraintStart_toEndOf="@id/main_video_avatar"
         app:layout_constraintTop_toBottomOf="@id/main_video_container"
         app:layout_constraintTop_toTopOf="@id/main_video_avatar"
+        app:layout_constraintEnd_toStartOf="@id/more_icon"
+        android:maxLines="2"
         android:layout_marginStart="10dp"
         android:textColor="@color/black"
         android:textStyle="bold"
@@ -48,9 +49,10 @@
 
 
     <TextView
+        android:id="@+id/main_video_info"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:text="@string/video_name"
+        tools:text="@string/video_info"
         android:textSize="15sp"
         app:layout_constraintStart_toEndOf="@id/main_video_avatar"
         app:layout_constraintTop_toBottomOf="@id/main_video_title"
@@ -59,6 +61,7 @@
         />
 
     <ImageView
+        android:id="@+id/more_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_more_vert_24"
