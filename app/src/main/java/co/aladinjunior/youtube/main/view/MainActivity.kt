@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import co.aladinjunior.youtube.databinding.ActivityMainBinding
+import co.aladinjunior.youtube.main.model.Video
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,7 +16,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        adapter = VideoAdapter()
+        val videos: MutableList<Video> = mutableListOf()
+        adapter = VideoAdapter(videos) {
+
+        }
         binding.mainRv.layoutManager = LinearLayoutManager(this)
         binding.mainRv.adapter = adapter
 
