@@ -2,7 +2,9 @@ package co.aladinjunior.youtube.main.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import androidx.recyclerview.widget.LinearLayoutManager
+import co.aladinjunior.youtube.R
 import co.aladinjunior.youtube.databinding.ActivityMainBinding
 import co.aladinjunior.youtube.main.data.API
 import co.aladinjunior.youtube.main.model.Video
@@ -21,6 +23,9 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.title = ""
 
         val videos: MutableList<Video> = mutableListOf()
         adapter = VideoAdapter(videos) {
@@ -49,6 +54,11 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
 
 
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
 

@@ -56,6 +56,8 @@
         android:textSize="15sp"
         app:layout_constraintStart_toEndOf="@id/main_video_avatar"
         app:layout_constraintTop_toBottomOf="@id/main_video_title"
+        app:layout_constraintEnd_toEndOf="@id/main_video_title"
+        android:maxLines="2"
         android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
         />
