@@ -83,8 +83,7 @@
         android:id="@+id/hide_player"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+
         android:src="@drawable/ic_keyboard_arrow_down_black_24dp" />
 
     <ImageView
@@ -217,9 +216,7 @@
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:src="@drawable/ic_play_arrow_black_24dp"
-        app:layout_constraintTop_toTopOf="@id/video_player_title"
-        app:layout_constraintBottom_toBottomOf="@id/video_player_title"
-        app:layout_constraintEnd_toStartOf="@id/video_cancel_button"
+
 
         />
 
@@ -228,9 +225,7 @@
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:src="@drawable/ic_close_black_24dp"
-        app:layout_constraintTop_toTopOf="@id/video_player_title"
-        app:layout_constraintBottom_toBottomOf="@id/video_player_title"
-        app:layout_constraintEnd_toEndOf="parent"
+
         />
 
     <SeekBar
@@ -239,8 +234,7 @@
         android:layout_height="wrap_content"
         android:paddingStart="0dp"
         android:paddingEnd="0dp"
-        app:layout_constraintBottom_toTopOf="@id/container_scroll"
-        app:layout_constraintTop_toTopOf="@id/container_scroll" />
+         />
 
 
 </merge>
