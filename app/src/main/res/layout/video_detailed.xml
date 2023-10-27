@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -17,13 +18,26 @@
         android:alpha="0"
         android:background="@android:color/black" />
 
+    <LinearLayout
+        android:id="@+id/container_scroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/video_player"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical"
+        android:background="@color/white">
+
+    </LinearLayout>
+
 
     <LinearLayout
-        android:orientation="vertical"
         android:id="@+id/video_player_title"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/mini_player_subtitle"
@@ -33,22 +47,16 @@
             android:ellipsize="marquee"
             android:singleLine="true"
             android:text="@string/hello_world"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/mini_player_title"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginStart="30dp"
             android:ellipsize="marquee"
             android:singleLine="true"
-            android:text="@string/hello_world"
-            android:layout_marginStart="30dp"
-             />
-
-
-
-
-
+            android:text="@string/hello_world" />
 
 
     </LinearLayout>
@@ -58,6 +66,181 @@
         android:id="@+id/surface_view"
         android:layout_width="0dp"
         android:layout_height="0dp" />
+
+    <View
+        android:id="@+id/view_frame"
+        tools:alpha="1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0"
+        android:background="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="@id/video_player"
+        app:layout_constraintEnd_toEndOf="@id/video_player"
+        app:layout_constraintStart_toStartOf="@id/video_player"
+        app:layout_constraintTop_toTopOf="@id/video_player" />
+
+    <ImageView
+        android:id="@+id/hide_player"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_keyboard_arrow_down_black_24dp" />
+
+    <ImageView
+        android:id="@+id/playlist_player"
+        tools:alpha="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:alpha="0"
+        android:src="@drawable/ic_playlist_add_black_24dp"
+        app:layout_constraintEnd_toStartOf="@id/share_player"
+        app:layout_constraintTop_toTopOf="@id/video_player" />
+
+    <ImageView
+        android:id="@+id/share_player"
+        tools:alpha="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:alpha="0"
+        android:src="@drawable/ic_reply_black_24dp"
+        app:layout_constraintEnd_toStartOf="@id/more_player"
+        app:layout_constraintTop_toTopOf="@id/video_player" />
+
+    <ImageView
+        android:id="@+id/more_player"
+        tools:alpha="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:alpha="0"
+        android:src="@drawable/ic_more_vert_black_24dp"
+        app:layout_constraintEnd_toEndOf="@id/video_player"
+        app:layout_constraintTop_toTopOf="@id/video_player" />
+
+    <ImageView
+        android:id="@+id/full_player"
+        tools:alpha="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:alpha="0"
+        android:src="@drawable/ic_fullscreen_black_24dp"
+        app:layout_constraintBottom_toBottomOf="@id/video_player"
+        app:layout_constraintEnd_toEndOf="@id/video_player" />
+
+    <ImageView
+        android:id="@+id/duration_time"
+        tools:alpha="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:alpha="0"
+        android:text="00:00"
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/full_player"
+        app:layout_constraintEnd_toStartOf="@id/full_player"
+        app:layout_constraintTop_toTopOf="@id/full_player" />
+
+    <ImageView
+        android:id="@+id/current_time"
+        tools:alpha="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:alpha="0"
+        android:text="00:00"
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/full_player"
+        app:layout_constraintStart_toStartOf="@id/hide_player"
+        app:layout_constraintTop_toTopOf="@id/full_player" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        tools:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/video_player"
+        app:layout_constraintEnd_toEndOf="@id/video_player"
+        app:layout_constraintStart_toStartOf="@id/video_player"
+        app:layout_constraintTop_toTopOf="@id/video_player" />
+
+    <ImageView
+        android:id="@+id/play_button"
+        tools:alpha="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0"
+        android:src="@drawable/ic_pause_black_24dp"
+        app:layout_constraintBottom_toBottomOf="@id/video_player"
+        app:layout_constraintEnd_toEndOf="@id/video_player"
+        app:layout_constraintStart_toStartOf="@id/video_player"
+        app:layout_constraintTop_toTopOf="@id/video_player" />
+
+    <ImageView
+        android:id="@+id/next_button"
+        tools:alpha="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:alpha="0"
+        android:src="@drawable/ic_skip_next_black_24dp"
+        app:layout_constraintBottom_toBottomOf="@id/video_player"
+        app:layout_constraintStart_toEndOf="@id/play_button"
+        app:layout_constraintTop_toTopOf="@id/video_player" />
+
+    <ImageView
+        android:id="@+id/previous_button"
+        tools:alpha="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:alpha="0"
+        android:src="@drawable/ic_skip_previous_black_24dp"
+        app:layout_constraintBottom_toBottomOf="@id/video_player"
+        app:layout_constraintEnd_toStartOf="@id/play_button"
+        app:layout_constraintTop_toTopOf="@id/video_player" />
+
+    <ImageView
+        android:id="@+id/video_play_button"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_play_arrow_black_24dp"
+        app:layout_constraintTop_toTopOf="@id/video_player_title"
+        app:layout_constraintBottom_toBottomOf="@id/video_player_title"
+        app:layout_constraintEnd_toStartOf="@id/video_cancel_button"
+
+        />
+
+    <ImageView
+        android:id="@+id/video_cancel_button"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_close_black_24dp"
+        app:layout_constraintTop_toTopOf="@id/video_player_title"
+        app:layout_constraintBottom_toBottomOf="@id/video_player_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <SeekBar
+        android:id="@+id/seek_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        app:layout_constraintBottom_toTopOf="@id/container_scroll"
+        app:layout_constraintTop_toTopOf="@id/container_scroll" />
 
 
 </merge>
