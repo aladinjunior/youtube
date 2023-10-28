@@ -41,14 +41,14 @@
                 app:motionTarget="@id/mini_player_title" />
 
             <KeyAttribute
-                app:motionTarget="@id/video_cancel_button"
+                android:alpha="0"
                 app:framePosition="95"
-                android:alpha="0"/>
+                app:motionTarget="@id/video_cancel_button" />
 
             <KeyAttribute
-                app:motionTarget="@id/video_play_button"
+                android:alpha="0"
                 app:framePosition="95"
-                android:alpha="0"/>
+                app:motionTarget="@id/video_play_button" />
 
 
         </KeyFrameSet>
@@ -57,6 +57,21 @@
 
     <ConstraintSet android:id="@+id/start">
 
+        <Constraint
+            android:id="@+id/container_scroll"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/video_player" />
+
+        <Constraint
+            android:id="@+id/seek_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/container_scroll"
+            app:layout_constraintTop_toTopOf="@id/container_scroll" />
+
 
         <Constraint
             android:id="@+id/hide_player"
@@ -64,8 +79,8 @@
             android:layout_height="36dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            app:layout_constraintTop_toTopOf="@id/video_player"
-            app:layout_constraintStart_toStartOf="@id/video_player"/>
+            app:layout_constraintStart_toStartOf="@id/video_player"
+            app:layout_constraintTop_toTopOf="@id/video_player" />
 
         <Constraint
             android:id="@+id/video_play_button"
@@ -113,21 +128,35 @@
     <ConstraintSet android:id="@+id/end">
 
         <Constraint
+            android:id="@+id/container_scroll"
+
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/video_player"
+            android:translationY="-45dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"/>
+
+        <Constraint
             android:id="@+id/seek_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@id/container_scroll"
-            app:layout_constraintTop_toBottomOf="@id/container_scroll"
             android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp" />
+            android:layout_marginEnd="10dp"
+            app:layout_constraintBottom_toTopOf="@id/container_scroll"
+            app:layout_constraintTop_toTopOf="@id/container_scroll" />
+
+
 
 
         <Constraint
             android:id="@+id/hide_player"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            app:layout_constraintTop_toTopOf="@id/video_player"
-            app:layout_constraintStart_toStartOf="@id/video_player"/>
+            app:layout_constraintStart_toStartOf="@id/video_player"
+            app:layout_constraintTop_toTopOf="@id/video_player" />
 
 
         <Constraint
