@@ -25,6 +25,8 @@
         android:orientation="vertical"
         android:background="@color/white">
 
+        <include layout="@layout/video_detailed_content"/>
+
     </LinearLayout>
 
 
