@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -150,6 +148,7 @@
         android:layout_width="match_parent"
         android:layout_height=".5dp"
         android:background="@android:color/darker_gray" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_similar"

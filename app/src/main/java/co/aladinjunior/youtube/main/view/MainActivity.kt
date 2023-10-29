@@ -1,15 +1,23 @@
+
 package co.aladinjunior.youtube.main.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
+import android.widget.LinearLayout
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import co.aladinjunior.youtube.R
 import co.aladinjunior.youtube.databinding.ActivityMainBinding
 import co.aladinjunior.youtube.databinding.VideoDetailedBinding
+import co.aladinjunior.youtube.databinding.VideoDetailedContentBinding
 import co.aladinjunior.youtube.main.data.API
 import co.aladinjunior.youtube.main.model.Video
+import co.aladinjunior.youtube.main.model.VideoBuilder
+import co.aladinjunior.youtube.util.videos
+import com.squareup.picasso.Picasso
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
@@ -21,12 +29,21 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var videoDetailedBinding: VideoDetailedBinding
+    private lateinit var detailedContentBinding: VideoDetailedContentBinding
+
     private lateinit var adapter: VideoAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
         videoDetailedBinding = VideoDetailedBinding.bind(binding.root)
+
+        setContentView(binding.root)
+
+
+
+
 
 
         setSupportActionBar(binding.toolbar)
@@ -38,6 +55,8 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         }
         binding.mainRv.layoutManager = LinearLayoutManager(this)
         binding.mainRv.adapter = adapter
+
+
 
 
 
@@ -83,6 +102,20 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
             override fun onTransitionTrigger(p0: MotionLayout?, p1: Int, p2: Boolean, p3: Float) {
             }
         })
+
+
+        detailedContentBinding = VideoDetailedContentBinding.inflate(layoutInflater)
+        setContentView(detailedContentBinding.root)
+
+        val detailedAdapter = VideoDetailedAdapter(videos())
+
+        Log.d("test", videos().toString())
+        detailedContentBinding.rvSimilar.layoutManager = LinearLayoutManager(this)
+        detailedContentBinding.rvSimilar.adapter = detailedAdapter
+
+        detailedAdapter.notifyDataSetChanged()
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
