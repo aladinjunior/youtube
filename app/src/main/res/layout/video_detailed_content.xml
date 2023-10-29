@@ -142,7 +142,7 @@
             android:drawableStart="@drawable/icon_yt"
             android:drawablePadding="8dp"
             android:text="Subscribe"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/black" />
 
     </RelativeLayout>
 
@@ -158,6 +158,6 @@
         android:layout_marginStart="12dp"
         android:layout_marginTop="12dp"
         tools:itemCount="10"
-        tools:listitem="@layout/video_detail_list_item_video" />
+        tools:listitem="@layout/video_detailed_list_item_video" />
 
 </LinearLayout>

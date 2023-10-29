@@ -149,20 +149,22 @@
             app:layout_constraintTop_toTopOf="@id/container_scroll" />
 
 
-
-
         <Constraint
             android:id="@+id/hide_player"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            app:layout_constraintStart_toStartOf="@id/video_player"
-            app:layout_constraintTop_toTopOf="@id/video_player" />
+            app:layout_constraintStart_toStartOf="@id/video_player_title"
+            app:layout_constraintTop_toTopOf="@id/video_player_title"
+            app:layout_constraintEnd_toEndOf="@id/video_player_title"
+            app:layout_constraintBottom_toBottomOf="@id/video_player_title"
+            android:alpha="0" />
 
 
         <Constraint
             android:id="@+id/video_play_button"
             android:layout_width="24dp"
             android:layout_height="24dp"
+            android:layout_marginEnd="5dp"
             app:layout_constraintBottom_toBottomOf="@id/video_player_title"
             app:layout_constraintEnd_toStartOf="@id/video_cancel_button"
             app:layout_constraintTop_toTopOf="@id/video_player_title" />
@@ -171,14 +173,14 @@
             android:id="@+id/video_cancel_button"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginEnd="25dp"
+            android:layout_marginEnd="10dp"
             app:layout_constraintBottom_toBottomOf="@id/video_player_title"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/video_player_title"
             app:layout_constraintTop_toTopOf="@id/video_player_title" />
         <Constraint
             android:id="@+id/video_player"
             android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginBottom="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="17:3"
@@ -188,7 +190,7 @@
         <Constraint
             android:id="@+id/surface_view"
             android:scaleX=".4"
-            android:translationX="-120dp"
+            android:translationX="-111dp"
             app:layout_constraintBottom_toBottomOf="@id/video_player"
             app:layout_constraintEnd_toEndOf="@id/video_player"
             app:layout_constraintStart_toStartOf="@id/video_player"
