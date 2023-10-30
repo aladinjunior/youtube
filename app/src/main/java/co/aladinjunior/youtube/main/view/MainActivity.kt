@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -38,6 +39,9 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         videoDetailedBinding = VideoDetailedBinding.bind(binding.root)
+        val linear = binding.root
+        detailedContentBinding = VideoDetailedContentBinding.bind(binding.root)
+
 
         setContentView(binding.root)
 
@@ -104,18 +108,21 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         })
 
 
-        detailedContentBinding = VideoDetailedContentBinding.inflate(layoutInflater)
-        setContentView(detailedContentBinding.root)
+
 
         val detailedAdapter = VideoDetailedAdapter(videos())
-
-        Log.d("test", videos().toString())
         detailedContentBinding.rvSimilar.layoutManager = LinearLayoutManager(this)
         detailedContentBinding.rvSimilar.adapter = detailedAdapter
-
         detailedAdapter.notifyDataSetChanged()
 
 
+
+
+    }
+
+    private fun prepareVideo(){
+        val youtubePlayer = YoutubePlayer(this)
+        videoDetailedBinding.surfaceView.holder.addCallback(youtubePlayer)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
