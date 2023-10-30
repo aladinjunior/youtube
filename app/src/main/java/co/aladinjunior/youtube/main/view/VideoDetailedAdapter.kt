@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import co.aladinjunior.youtube.R
 import co.aladinjunior.youtube.databinding.VideoDetailedListItemVideoBinding
 import co.aladinjunior.youtube.main.model.Video
-import co.aladinjunior.youtube.main.model.VideoBuilder
 import co.aladinjunior.youtube.util.formatted
 import com.squareup.picasso.Picasso
 

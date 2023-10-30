@@ -1,10 +1,10 @@
-
 package co.aladinjunior.youtube.main.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.constraintlayout.motion.widget.MotionLayout
@@ -17,6 +17,9 @@ import co.aladinjunior.youtube.databinding.VideoDetailedContentBinding
 import co.aladinjunior.youtube.main.data.API
 import co.aladinjunior.youtube.main.model.Video
 import co.aladinjunior.youtube.main.model.VideoBuilder
+import co.aladinjunior.youtube.util.YoutubePlayer
+import co.aladinjunior.youtube.util.publisher
+import co.aladinjunior.youtube.util.video
 import co.aladinjunior.youtube.util.videos
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.*
@@ -33,17 +36,17 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
     private lateinit var detailedContentBinding: VideoDetailedContentBinding
 
     private lateinit var adapter: VideoAdapter
+    private lateinit var youtubePlayer: YoutubePlayer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         videoDetailedBinding = VideoDetailedBinding.bind(binding.root)
-        val linear = binding.root
         detailedContentBinding = VideoDetailedContentBinding.bind(binding.root)
-
-
         setContentView(binding.root)
+
+
 
 
 
@@ -55,11 +58,11 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
 
         val videos: MutableList<Video> = mutableListOf()
         adapter = VideoAdapter(videos) {
-            showOverlayView()
+            showOverlayView(it)
+
         }
         binding.mainRv.layoutManager = LinearLayoutManager(this)
         binding.mainRv.adapter = adapter
-
 
 
 
@@ -69,7 +72,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
             val response = async { API().getVideo() }
             val listVideo = response.await()
             listVideo?.data
-            withContext(Dispatchers.Main){
+            withContext(Dispatchers.Main) {
                 listVideo?.let {
                     videos.clear()
                     videos.addAll(listVideo.data)
@@ -81,17 +84,22 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
 
         }
 
-
-
+        prepareVideo()
     }
 
-    private fun showOverlayView() {
+
+    private fun prepareVideo() {
+        youtubePlayer = YoutubePlayer(this@MainActivity)
+        videoDetailedBinding.surfaceView.holder.addCallback(youtubePlayer)
+    }
+
+    private fun showOverlayView(video: Video) {
         videoDetailedBinding.viewLayer.animate().apply {
             duration = 400
             alpha(0.5f)
         }
 
-        binding.motionContainer.setTransitionListener(object : MotionLayout.TransitionListener{
+        binding.motionContainer.setTransitionListener(object : MotionLayout.TransitionListener {
             override fun onTransitionStarted(p0: MotionLayout?, p1: Int, p2: Int) {
             }
 
@@ -108,22 +116,33 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         })
 
 
-
-
         val detailedAdapter = VideoDetailedAdapter(videos())
         detailedContentBinding.rvSimilar.layoutManager = LinearLayoutManager(this)
         detailedContentBinding.rvSimilar.adapter = detailedAdapter
+
+        Picasso.get().load(video.publisher.pictureProfileUrl).into(detailedContentBinding.imgChannel)
+        detailedContentBinding.contentTitle.text = video.title
+        detailedContentBinding.contentChannel.text = video.publisher.name
         detailedAdapter.notifyDataSetChanged()
 
+        videoDetailedBinding.videoPlayer.visibility = View.GONE
+        youtubePlayer.setUrl(video.videoUrl)
 
 
 
     }
 
-    private fun prepareVideo(){
-        val youtubePlayer = YoutubePlayer(this)
-        videoDetailedBinding.surfaceView.holder.addCallback(youtubePlayer)
+
+    override fun onDestroy() {
+        super.onDestroy()
+        youtubePlayer.release()
     }
+
+    override fun onPause() {
+        super.onPause()
+        youtubePlayer.pause()
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
